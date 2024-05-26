@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Sensores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        .navbar {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Sensores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container-fluid mt-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand fs-5" href="#">Sensores da Casa</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Geral</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#historicoGrafico">Histórico</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                      Status
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Ativados</a></li>
+                      <li><a class="dropdown-item" href="#">Desativados</a></li>
+                      <li><a class="dropdown-item" href="#">Sleep</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        <div class="row mt-3"> <!-- Adicionado margem superior aqui -->
+            <!-- Cards de sensores -->
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Temperatura</h5>
+                        <p class="card-text">25°C</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('temperatura')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-temperatura">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Umidade</h5>
+                        <p class="card-text">55%</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('umidade')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-umidade">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Movimento</h5>
+                        <p class="card-text">Não detectado</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('movimento')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-movimento">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Luminosidade</h5>
+                        <p class="card-text">800 lux</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('luminosidade')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-luminosidade">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Qualidade do Ar</h5>
+                        <p class="card-text">95%</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('qualidadeDoAr')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-qualidadeDoAr">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nível de Ruído</h5>
+                        <p class="card-text">45 dB</p>
+                        <button class="btn btn-primary" onclick="alterarStatus('nivelDeRuido')">Alterar Status</button>
+                        <p class="status-text mt-2" id="status-nivelDeRuido">Status: Ativado</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Outros cartões -->
+            <!-- ... -->
+        </div>
+
+        <div class="mt-4">
+            <h3>Histórico de Dados</h3>
+            <div class="form-group">
+                <label for="sensorSelect">Selecionar Tipo de Sensor:</label>
+                <select class="form-control" id="sensorSelect">
+                    <option value="temperatura">Temperatura</option>
+                    <option value="umidade">Umidade</option>
+                    <option value="movimento">Movimento</option>
+                    <option value="luminosidade">Luminosidade</option>
+                    <option value="qualidadeDoAr">Qualidade do Ar</option>
+                    <option value="nivelDeRuido">Nível de Ruído</option>
+                </select>
+
+            </div>
+            <canvas id="historicoGrafico"></canvas>
+        </div>
+
+        <button class="btn btn-primary mt-3" onclick="atualizarDados()">Atualizar Dados</button>
+    </div>
+
+    <!-- Adicionar dependências do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
